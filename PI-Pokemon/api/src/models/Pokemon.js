@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     id:{
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primarykey: true,
+      primaryKey: true,
       allowNull: false
     },
     name: {
@@ -15,27 +15,27 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     vida:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER, //porque es numerico
       allowNull: false
     },
     Fuerza: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER, 
       allowNull: false
     },
     Defensa:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     Velocidad:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     Altura:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     Peso:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
         allowNull: false
     },
     createdInDb:{
