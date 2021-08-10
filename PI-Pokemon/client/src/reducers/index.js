@@ -1,11 +1,11 @@
-/* eslint-disable default-case */
+
 
 
 const initialState = {//generar un estado inicial
  pokemon:[],
 
 }
-function rootReducer ( state= initialState, action){
+const rootReducer = ( state= initialState, action) => {
 switch (action.type) {
     case 'GET_POKEMON':
         return {

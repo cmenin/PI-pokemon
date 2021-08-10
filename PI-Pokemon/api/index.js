@@ -17,12 +17,28 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+const axios = require('axios')
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Type } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => { //si esta en false, se le agrega el contenido.
+// conn.sync({ force: false }).then(() => { //si esta en false, se le agrega el contenido.
+//   axios.get("https://pokeapi.co/api/v2/type")
+//   .then(
+//     response=>{
+//       return response.date.results.forEach( t =>{
+//         Type.findOrCreate({
+//           where: {
+//             name:t.name
+//           }
+//         })
+//       })
+//     }
+//   )
+  
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
-});
+
+
