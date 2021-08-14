@@ -62,7 +62,7 @@ const getDbInfo = async () =>{
 const getAll = async () =>{
     const apiInfo = await getApiInfo(); //la ejecuto porque si no, no me devuelve nada.
     const dbInfo = await getDbInfo();
-    const infoTotal = apiInfo.concat(dbInfo);
+    const infoTotal = dbInfo.concat(apiInfo);
     return infoTotal; //devuelve un arreglo con toda la info.
 }
 
