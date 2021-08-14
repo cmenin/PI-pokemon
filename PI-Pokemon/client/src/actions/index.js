@@ -18,7 +18,15 @@ export function getPokemon(){
         payload: json.data
     })
     }
-}     
+}
+
+export default function filterByType(payload){
+    return {
+        type: 'FILTER_BY_TYPE',
+        payload
+    }
+}
+
 
 // export const getPokemon = () => async (dispatch) => {
 //     try {
@@ -28,3 +36,15 @@ export function getPokemon(){
 //       console.log(err);
 //     }
 //   };
+
+// export const filterPokeTypes = () => async (dispatch) => {
+//     try {
+//       const res = await axios.get('https://pokeapi.co/api/v2/type');
+//       dispatch({ type: "FILTER_BY_TYPE", payload: res.data });
+//       console.log(dispatch,'dispaaaaatch')
+
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+  
