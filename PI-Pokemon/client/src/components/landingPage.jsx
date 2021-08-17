@@ -3,15 +3,25 @@ import {Link} from "react-router-dom";
 import "./landing.css"
 
 
+
 export default function LandingPage(){
     return (
-    
-        <div>
-            <h1>Bienvenidos a la PokeApi!!!</h1>
+    <body className="body">
+       
+        <div className='landing1'>
+            <h1 className='bienvenidos'> </h1>
             <Link to="/home"> 
-                <button>HOME</button>
+            <div id="testbutton">
+
+                <button className='botonHome'>HOME</button>
+            </div>
+            
             </Link>
-        </div>
+</div>
+
+
+      
+    </body>
     )
 }
 

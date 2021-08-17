@@ -1,7 +1,4 @@
 
-  
-
-
 import React from "react"
 
 export default function Paginado ({pokemonsPerPage,allpokemon, paginado}){
@@ -16,7 +13,7 @@ export default function Paginado ({pokemonsPerPage,allpokemon, paginado}){
             <ul className='paginado'> 
                 {pageNumbers && pageNumbers.map(number=> (
                     <li className='number' key={number}>
-                    <a onClick={() => paginado(number)}>
+                    <a onClick={(e) => paginado(number)}>
                         {number}
                         </a>
                     </li>

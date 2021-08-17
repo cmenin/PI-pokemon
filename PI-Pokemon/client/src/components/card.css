@@ -1,0 +1,32 @@
+.name{
+    font-family: fantasy;
+    font-size: 30px;
+    margin: 0;
+}
+
+.type{
+    font-family: cursive;
+    font-size: 20px;
+    margin: 0;
+    
+}
+
+.div{
+    display: block;
+    margin: 4%;
+    display: inline-table;
+    background-color: honeydew;
+    width: 240px; 
+     height: 340px; 
+     border: 3px solid #555;
+    border-radius: 10%;
+    padding: 5px;
+    /* display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 150px 150px; */
+}
+
+.img{
+    
+}

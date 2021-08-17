@@ -75,8 +75,9 @@ if(name){
     res.status(200).send(pokename):
     res.status(404).send('No se encuentra el Pokemon')
 } else{ //si no haya un query
-    res.status(200).send(pokemonTotal)
-}
+    const thePokemons= await getAll()
+    res.status(200).json(thePokemons)
+    }
 })
 
 router.get('/type', async(req,res,next)=>{
@@ -90,10 +91,23 @@ router.get('/type', async(req,res,next)=>{
     res.send(alltypes) //muestra los types que se traen de la base de datos.
 })
 
-router.post('/pokemon', async (req,res,next) =>{ //cuando se usa el post se usa ambas cosas, el req porque se usa con el body, y es res es la repuesta.
+router.post('/pokemon', async (req,res) =>{ //cuando se usa el post se usa ambas cosas, el req porque se usa con el body, y es res es la repuesta.
 const {  name, hp, attack, defense, speed, height, weight, sprite, type} = req.body //destructuring para sacar los datos del body.
-const createdPokmon = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, sprite, type});
-res.json(createdPokmon) //se crea el pokemon de la const createdPokemon. 
+    try{
+        console.log(type,"-------------------------TYPE")
+        const createdPokemon = await Pokemon.create({
+            name, hp, attack, defense, speed, height, weight, sprite});
+
+        const tipos= type.map(async t=> {
+            const pByType= await Type.findByPk(t)
+            createdPokemon.addTypes(pByType)
+        })
+
+        await Promise.all(tipos)
+
+        res.json(createdPokemon) //se crea el pokemon de la const createdPokemon. 
+    }
+catch(error){console.log(error)}
 })  
 
 router.get('/pokemon/:id', async(req,res,next) => {

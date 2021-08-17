@@ -1,15 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import { getPokemon } from '../actions';
+import { getPokemon, filterByType, sort_AZ, sort_by_attack, isCreated } from '../actions';
 import {Link} from "react-router-dom";
 import Card from './card';
 import Paginado from './paginado';
+import SearchBar from './SearchBar';
+import './home.css'
 
 
 export default function Home(){
     const dispatch = useDispatch() //utilizar esa constante e ir despachando mis acciones.
-    const allpokemon = useSelector((state) => state.pokemon) //lo mismo que usar el mapStateToProps
+    const allpokemon = useSelector((state) => state.typesPok) //lo mismo que usar el mapStateToProps
     console.log(allpokemon, "allP")
     //definir estados locales:
     const [currentPage,setCurrentPage] = useState(1) // pagina actual, y una pagina que me setee la pagina actual. se va a setear en (1) porque siempre voy a arrancar en la primer pagina.
@@ -32,28 +34,58 @@ dispatch(getPokemon())
     console.log('entre!!!')
 dispatch(getPokemon())
  }
-//  function handleFilterType(e){
-//      dispatch(filterByType(e.target.value))
-//  } 
+ function handleFilterType(e){
+     dispatch(filterByType(e.target.value))
+ } 
+
+ function hanldeSort(e){
+     e.preventDefault();
+     dispatch(sort_AZ(e.target.value))
+ } 
+
+ function handleAttack(e){
+     e.preventDefault()
+     dispatch(sort_by_attack(e.target.value))
+ } 
+ 
+ function hanldeCreated(e){
+     e.preventDefault()
+     dispatch(isCreated(e.target.value))
+ } 
 
 return (
-    <div> 
-        <Link to= '/pokemon'>Crear Personaje</Link> 
+    
+    <div className="pageHome"> 
+        <Link to= '/pokemon'>
+            <button class="crear" >Crear Personaje</button>
+            </Link> 
         <h1>Pokemoooooooon</h1>
-        <button  onClick={e => {handleClick(e)}}>
+        <button className='cargar' onClick={e => {handleClick(e)}}>
             Volver a cargar todos los personajes
         </button>
-        <div>
-            <select className="pueba1">
-                <option value='asc'>Ascendente</option>
-                <option value='desc'>Descendente</option>
+        
+            <select className="az" onChange={e=>hanldeSort(e)}>
+    
+                <option value='All'>All</option>
+                <option value='az'>AZ</option>
+                <option value='za'>ZA</option>
             </select>
-            <select>
-                <option value='attack'>Ascendente fuerza</option>
-                <option value='attack'>Descendente fuerza</option>
+        
+            <select className="created" onChange={e=>hanldeCreated(e)}>
+                <option value='all'>All</option>
+                <option value='created'>Created</option>
+                <option value='existent'>Existent</option>
+            </select>
 
+
+            <select className="fuerza" onChange= {e=>{handleAttack(e)}} >
+                <option value='All'>All</option>
+                <option value='strong'>Ascendente fuerza</option>
+                <option value='weak'>Descendente fuerza</option>
             </select>
-            <select >
+        
+
+            <select onChange={e=> {handleFilterType(e)}}>
             <option value='All'>All</option>
                 <option value='Normal'>Normal</option>
                 <option value='Fighting'>Fighting</option>
@@ -76,18 +108,23 @@ return (
                 <option value='Unknown'>Unknown</option>
                 <option value='Shadow'>Shadow</option>
             </select>
+
+            
+
+            <SearchBar></SearchBar>
+            
             <Paginado //renderizamos
             pokemonsPerPage = {pokemonsPerPage}
-           allpokemon={allpokemon.length} //porque necesito un estado numerico.
+            allpokemon={allpokemon.length} //porque necesito un estado numerico.
             paginado = {paginado}
             />
             {
-
-currentPokemons?.map((p)=>{ 
-                   console.log(p, "p")//currentPokemons
-                   console.log(allpokemon,"allP")
-                   return(
-                       <fragment>
+                
+                currentPokemons?.map((p)=>{ 
+                    console.log(p, "p")//currentPokemons
+                    console.log(allpokemon,"allP")
+                    return(
+                        <fragment>
                    <Link to={"/home/" + p.id}>
                    <Card name={p.name} sprite={p.sprite} types={p.types} key={p.id} />
                    </Link>
@@ -96,7 +133,6 @@ currentPokemons?.map((p)=>{
                })
             }
         </div>
-    </div>
 )
 
 

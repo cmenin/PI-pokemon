@@ -2,6 +2,9 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from  "react-router-dom";
 import landingPage from './components/landingPage'
 import home from './components/home'
+import pokemonCreate from './components/pokemonCreate'
+import detail from './components/detail'
+
 
 function App() {
   return (
@@ -10,6 +13,10 @@ function App() {
       <Switch>
 <Route exact path= '/' component = {landingPage}/>
 <Route path = '/home' component={home}/>
+<Route path = '/pokemon' component={pokemonCreate}/>
+<Route path = '/pokemon/:id' component={detail}/>
+
+
       </Switch>
     </div>
     </BrowserRouter>
