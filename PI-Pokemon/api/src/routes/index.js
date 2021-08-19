@@ -67,16 +67,16 @@ const getAll = async () => {
   return infoTotal; //devuelve un arreglo con toda la info.
 };
 
-router.get("/pokemon", async (req, res, next) => {
-  const { name } = req.query; //trae la primer coincidencia.
+router.get("/pokemon", async (req, res, next) => { //trae toda la info
+  const { name } = req.query; //trae la primer coincidencia. query: forma de recibir info.
   const pokemonTotal = await getAll(); // llama a la funcion de arriba que trae todos los pokemons
   if (name) {
     const pokename = pokemonTotal.filter((el) =>
       el.name.toLowerCase().includes(name.toLowerCase())
     ); //tomar name y fijarme si incluye lo que se le pasó por query: name
-    console.log(pokename);
+    //console.log(pokename);
     pokename.length // el.name es cada uno de los name del array pokename
-      ? res.status(200).send(pokename)
+      ? res.status(200).send(pokename) //devuelve objeto que incluye el nombre
       : res.status(404).send("No se encuentra el Pokemon");
   } else {
     //si no haya un query
@@ -93,12 +93,12 @@ router.get("/type", async (req, res, next) => {
     return { name: el.name }; //se crea un objeto que tiene name.
   });
   Type.findOrCreate(arrTipos); //en la base de dato de type, se guarda la info.
-  const alltypes = await Type.findAll(); //buesca y trae la info de la bd.
+  const alltypes = await Type.findAll(); //busca y trae la info de la bd.
   res.json(alltypes); //muestra los types que se traen de la base de datos.
 });
 
 router.post("/pokemon", async (req, res) => {
-  //cuando se usa el post se usa ambas cosas, el req porque se usa con el body, y es res es la repuesta.
+  //cuando se usa el post se usa ambas cosas, el req porque se usa con el body, y res es la repuesta.
   const { name, hp, attack, defense, speed, height, weight, sprite, type } =
     req.body; //destructuring para sacar los datos del body.
   try {
@@ -115,8 +115,8 @@ router.post("/pokemon", async (req, res) => {
     });
 
     const tipos = type.map(async (t) => {
-      const pByType = await Type.findByPk(t);
-      createdPokemon.addTypes(pByType);
+      const pByType = await Type.findByPk(t); //busca por primaeykey-tabla intermedia
+      createdPokemon.addTypes(pByType); //agrega prop type
     });
 
     await Promise.all(tipos);
@@ -131,16 +131,16 @@ router.get("/pokemon/:id", async (req, res, next) => {
   const { id } = req.params; // cuando es :(dos puntos) es porque viene de la url.
   try {
     //trata de ejecutar la accion
-    if (id.length > 10) {
-      //id es mayor a 10 trae el id de la bd
+    if (id.length > 10) { 
+      //id es mayor a 10 es el id de la bd
       const poke = await Pokemon.findOne({
         //busca uno solo
-        where: { id: id }, //donde la + la condicion.
+        where: { id: id }, //donde la condicion sea igual
         include: {
           //que incluiya
           model: Type, //model type
           attributes: ["name"], //name
-          through: { attributes: [] }, //tabla intermedia
+          through: { attributes: [] }, //tabla intermedia 
         },
       });
     //   console.log(poke);

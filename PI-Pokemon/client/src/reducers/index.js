@@ -16,13 +16,11 @@ const rootReducer = (state = initialState, action) => {
 
     case "FILTER_BY_TYPE":
       let allPokemons = state.pokemon;
-      console.log(allPokemons, "STATE POKEMON ------> REDUCER");
-      //   const mapeo = allPokemons?.map((p) => {
-      //     return { ...p, types: p.types?.map((el) => el) };
-      //   }); // cambio la forma de guardar los types, hago un array con los nombres de cada type
+      //console.log(allPokemons, "STATE POKEMON ------> REDUCER");
+      // cambio la forma de guardar los types, hago un array con los nombres de cada type
 
       const filtrados =
-        action.payload === "All"
+        action.payload === "All" 
           ? allPokemons
           : allPokemons.filter((e) => {
               return e.types?.includes(action.payload);
@@ -30,14 +28,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         typesPok: filtrados,
-      }; ////////////////////////////////////////////////// NO FUNCIONA
+      }; 
 
     case "SORT_A_Z":
       if (action.payload === "az")
         return {
           ...state,
           typesPok: [...state.typesPok].sort((a, b) =>
-            a.name > b.name ? 1 : -1
+            a.name > b.name ? 1 : -1 //
           ),
         };
       return {
@@ -63,9 +61,9 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case "IS_CREATED": {
-      let stateTemp = state.pokemon;
+      let stateTemp = state.pokemon; 
       let filterPokemons =
-        action.payload === "created"
+        action.payload === "created" 
           ? stateTemp.filter((p) => p.createdInDb)
           : stateTemp.filter((p) => !p.createdInDb);
       return action.payload === "all"
@@ -74,21 +72,21 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case "GET_BY_NAME": {
-      return { ...state, typesPok: action.payload };
+      return { ...state, typesPok: action.payload }; //back por query
     }
     case "GET_BY_ID": {
       return {
         ...state,
-        detail: action.payload,
+        detail: action.payload, //back por params
       };
     } 
 
     case "GET_TYPES": {
-      console.log(action.payload," ACTION PAYLOAD")
-      return { ...state, stateTypes: action.payload };
+      //console.log(action.payload," ACTION PAYLOAD")
+      return { ...state, stateTypes: action.payload }; //back
     }
 
-    case "POST_POKEMON":
+    case "POST_POKEMON": //back por body
       return {
         ...state,
       };

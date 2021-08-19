@@ -10,14 +10,14 @@ export function getPokemon() {
     // console.log(json.data, "json.data action");
 
     return dispatch({
-      type: "GET_POKEMON",
-      payload: json.data,
+      type: "GET_POKEMON", //tipo de accion
+      payload: json.data, // info para actualizar
     });
   };
 }
 
-export function filterByType(payload) {
-  console.log(payload, "PAYLOAD DEL ACTION------> VALUE DEL SELECT");
+export function filterByType(payload) { //
+ // console.log(payload, "PAYLOAD DEL ACTION------> VALUE DEL SELECT");
   return {
     type: "FILTER_BY_TYPE",
     payload: payload.toLowerCase(),
@@ -92,7 +92,7 @@ export function getByID(id) {
   };
 }
 
-export function postPokemon(payload) {
+export function postPokemon(payload) { 
   return async function (dispatch) {
     const respose = await axios.post("http://localhost:3001/pokemon/", payload);
     return respose;

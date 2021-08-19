@@ -40,3 +40,7 @@ conn.sync({ force: false }).then(() => { //si esta en false, se le agrega el con
   });
 })
 
+// async function getAinfo(){
+// const info = await axios.get(url)
+// }
+

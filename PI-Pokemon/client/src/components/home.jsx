@@ -10,8 +10,8 @@ import './home.css'
 
 
 export default function Home(){
-    const dispatch = useDispatch() //utilizar esa constante e ir despachando mis acciones.
-    const allpokemon = useSelector((state) => state.typesPok) //lo mismo que usar el mapStateToProps
+    const dispatch = useDispatch() //utilizar esa constante para ir despachando mis acciones.
+    const allpokemon = useSelector((state) => state.typesPok) //Selecciona el estado
     // console.log(allpokemon, "allP")
     //definir estados locales:
     const [currentPage,setCurrentPage] = useState(1) // pagina actual, y una pagina que me setee la pagina actual. se va a setear en (1) porque siempre voy a arrancar en la primer pagina.
@@ -25,7 +25,7 @@ export default function Home(){
  setCurrentPage(pageNumber)
     }
 
-    useEffect(()=>{ //traer del estado, los personajes cuando el componente se monta.
+    useEffect(()=>{ //traer del estado, los personajes cuando el componente se monta y ejecuta
 dispatch(getPokemon())
     },[dispatch]) //de lo que depende esto. ej: si dependo del dispatch, le indico que se ejecute siempre y cuando suceda lo del dispatch//se pasa el array vacio cuando no depende de nada.
 
@@ -36,8 +36,8 @@ dispatch(getPokemon())
 dispatch(getPokemon())
  }
  function handleFilterType(e){
-     e.preventDefault();
-     console.log(e.target.value,"******************** EVENT TARGET VALUE")
+     e.preventDefault(); 
+     //console.log(e.target.value,"******************** EVENT TARGET VALUE")
      dispatch(filterByType(e.target.value))
  } 
 
@@ -63,7 +63,7 @@ return (
         <Link to= '/pokemon'>
             <button class="crear" >Crear Personaje</button>
             </Link> 
-        <h1>Pokemoooooooon</h1>
+        <h1>POKEMON</h1>
         <button className='cargar' onClick={e => {handleClick(e)}}>
             Volver a cargar todos los personajes
         </button>
