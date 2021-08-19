@@ -12,7 +12,7 @@ import './home.css'
 export default function Home(){
     const dispatch = useDispatch() //utilizar esa constante e ir despachando mis acciones.
     const allpokemon = useSelector((state) => state.typesPok) //lo mismo que usar el mapStateToProps
-    console.log(allpokemon, "allP")
+    // console.log(allpokemon, "allP")
     //definir estados locales:
     const [currentPage,setCurrentPage] = useState(1) // pagina actual, y una pagina que me setee la pagina actual. se va a setear en (1) porque siempre voy a arrancar en la primer pagina.
     const [pokemonsPerPage, setPokemonPerPage]= useState(9)//cuantos pokemons tengo por pagina. y va a setear los pokemons por pagina. se pone la cantidad de cartas que se piden por pagina.
@@ -30,16 +30,20 @@ dispatch(getPokemon())
     },[dispatch]) //de lo que depende esto. ej: si dependo del dispatch, le indico que se ejecute siempre y cuando suceda lo del dispatch//se pasa el array vacio cuando no depende de nada.
 
 
- function handleClick(e){e.preventDefault();
+ function handleClick(e){
+     e.preventDefault();
     console.log('entre!!!')
 dispatch(getPokemon())
  }
  function handleFilterType(e){
+     e.preventDefault();
+     console.log(e.target.value,"******************** EVENT TARGET VALUE")
      dispatch(filterByType(e.target.value))
  } 
 
- function hanldeSort(e){
+ function handleSort(e){
      e.preventDefault();
+
      dispatch(sort_AZ(e.target.value))
  } 
 
@@ -48,14 +52,14 @@ dispatch(getPokemon())
      dispatch(sort_by_attack(e.target.value))
  } 
  
- function hanldeCreated(e){
+ function handleCreate(e){
      e.preventDefault()
      dispatch(isCreated(e.target.value))
  } 
 
 return (
-    
-    <div className="pageHome"> 
+    <body className="pageHome">
+    <div> 
         <Link to= '/pokemon'>
             <button class="crear" >Crear Personaje</button>
             </Link> 
@@ -64,14 +68,12 @@ return (
             Volver a cargar todos los personajes
         </button>
         
-            <select className="az" onChange={e=>hanldeSort(e)}>
-    
-                <option value='All'>All</option>
+            <select className="az" onChange={e=>handleSort(e)}>
                 <option value='az'>AZ</option>
                 <option value='za'>ZA</option>
             </select>
         
-            <select className="created" onChange={e=>hanldeCreated(e)}>
+            <select className="created" onChange={e=>handleCreate(e)}>
                 <option value='all'>All</option>
                 <option value='created'>Created</option>
                 <option value='existent'>Existent</option>
@@ -121,18 +123,19 @@ return (
             {
                 
                 currentPokemons?.map((p)=>{ 
-                    console.log(p, "p")//currentPokemons
-                    console.log(allpokemon,"allP")
+                    // console.log(p, "HOME----------------")//currentPokemons
+                    // console.log(allpokemon,"allP")
                     return(
                         <fragment>
-                   <Link to={"/home/" + p.id}>
-                   <Card name={p.name} sprite={p.sprite} types={p.types} key={p.id} />
+                   <Link to={"pokemon/" + p.id}>
+                   <Card name={p.name} sprite={p.sprite} types={p.types?.map(t=> t+ " - ")} key={p.id} />
                    </Link>
                         </fragment>
                    )
                })
             }
         </div>
+        </body>
 )
 
 

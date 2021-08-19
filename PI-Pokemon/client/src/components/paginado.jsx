@@ -1,5 +1,6 @@
 
-import React from "react"
+import React from "react";
+import "./paginado.css"
 
 export default function Paginado ({pokemonsPerPage,allpokemon, paginado}){
     const pageNumbers = []
@@ -9,11 +10,11 @@ export default function Paginado ({pokemonsPerPage,allpokemon, paginado}){
     }
     return( //esto va a ser lo que renderiza los numeros en si. se le pide que renderice una lista. primero se tiene que fijar si el arreglo pageNumbers tiene algo.
         
-        <nav>
+        <nav className='navpage'>
             <ul className='paginado'> 
                 {pageNumbers && pageNumbers.map(number=> (
                     <li className='number' key={number}>
-                    <a onClick={(e) => paginado(number)}>
+                    <a href onClick={(e) => paginado(number)}>
                         {number}
                         </a>
                     </li>

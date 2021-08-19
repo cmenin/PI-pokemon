@@ -1,0 +1,13 @@
+.divD{
+    display: block;
+    margin: 4%;
+    display: inline-table;
+    background-color: honeydew;
+    width: 240px; 
+     height: 340px; 
+     border: 3px solid #555;
+    border-radius: 10%;
+    padding: 5px;
+    transform: translateY(-5px);
+      box-shadow: 0px 10px 10px rgba(0,0,0,0.4);
+}

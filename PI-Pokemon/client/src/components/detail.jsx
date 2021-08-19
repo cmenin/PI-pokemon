@@ -1,23 +1,40 @@
-// import React, {useState,useEffect} from "react";
-// import { Link } from "react-router-dom";
-// import { getByID } from "../actions";
-// import { useDispatch,useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getByID } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
+import './details.css'
 
-// export default function getPokemonByID(props){
-//     const dispatch =useDispatch()
-//     useEffect(()=>{
-//         dispatch(getByID(props.match.params.id))
-//     },[dispatch])
+export default function GetPokemonByID(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getByID(props.match.params.id));
+  }, [dispatch]);
 
-//  const thePokemons= useSelector((state)=> state.detail)
-//  return(
-//      <div>{
-//      <div>
-//          <h2>{thePokemons.name}</h2>
+  const thePokemons = useSelector((state) => state.detail);
+  console.log(thePokemons," THE POKEMONS EL ESTADO DETAIL")
+  return (
+    <div className='divD'>
+      {
+        <div className='divdetailS'>
+          <img src={thePokemons.sprite} alt="img not found" width="200px" height="250px"/>
+        </div>
+        }
+        
+        {
+        <div> 
+          <h2>{thePokemons.name}</h2>
+          <p>Type: {thePokemons.types?.map(t=> t.name + " ")}</p>
+          <p>Attack: {thePokemons.attack}</p>
+          <p>Defense: {thePokemons.defense}</p>
+          <p>Speed: {thePokemons.speed}</p>
+          <p>Heigth: {thePokemons.height}</p>
+          <p>Weight: {thePokemons.weight}</p>
+        </div>
 
-//      </div>
-//      }
-//      </div>
-     
-//  )
-// }
+        }
+      <div> 
+      <Link to= "/home"> HOME </Link>
+      </div>
+    </div>
+  );
+}
