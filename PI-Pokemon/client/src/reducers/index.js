@@ -81,7 +81,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: action.payload,
       };
-    }
+    } 
 
     case "GET_TYPES": {
       console.log(action.payload," ACTION PAYLOAD")

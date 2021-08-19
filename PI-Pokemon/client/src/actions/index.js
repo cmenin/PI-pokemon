@@ -57,7 +57,7 @@ export function getByName(name) {
       });
     } catch (err) {
       console.log("Pokemon not found");
-    }
+    } 
   };
 }
 
