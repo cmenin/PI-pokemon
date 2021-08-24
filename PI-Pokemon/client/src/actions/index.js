@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export function getPokemon() {
-  console.log(" a ver getPokemon");
+ // console.log(" a ver getPokemon");
 
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/pokemon", {}); //va la ruta del back que trae todos los personas. esta es la conexion entre el front y el back
 
-    // console.log(json,"json action")
-    // console.log(json.data, "json.data action");
+    console.log(json,"json action")
+    console.log(json.data, "json.data action");
 
     return dispatch({
       type: "GET_POKEMON", //tipo de accion
@@ -17,7 +17,7 @@ export function getPokemon() {
 }
 
 export function filterByType(payload) { //
- // console.log(payload, "PAYLOAD DEL ACTION------> VALUE DEL SELECT");
+ console.log(payload, "PAYLOAD DEL ACTION------> VALUE DEL SELECT");
   return {
     type: "FILTER_BY_TYPE",
     payload: payload.toLowerCase(),

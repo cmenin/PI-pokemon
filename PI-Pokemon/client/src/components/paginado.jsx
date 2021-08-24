@@ -5,10 +5,10 @@ import "./paginado.css"
 export default function Paginado ({pokemonsPerPage,allpokemon, paginado}){
     const pageNumbers = []
 
-    for(var i = 1; i<=Math.ceil(allpokemon/pokemonsPerPage);i++){ //Math.ciel redondea los personajes, sobre la cantidad de personajes que quiero por pagina
+    for(var i = 1; i<=Math.ceil(allpokemon/pokemonsPerPage);i++){ 
         pageNumbers.push(i);
     }
-    return( //esto va a ser lo que renderiza los numeros en si. se le pide que renderice una lista. primero se tiene que fijar si el arreglo pageNumbers tiene algo.
+    return( 
         
         <nav className='navpage'>
             <ul className='paginado'> 

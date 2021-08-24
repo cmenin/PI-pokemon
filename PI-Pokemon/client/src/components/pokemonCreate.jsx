@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function PokemonCreate(params){
     const dispatch = useDispatch()
     const allTypes= useSelector((state)=> state.stateTypes)
-    console.log(allTypes,"************************************ ALLTYPES")
+    //console.log(allTypes,"************************************ ALLTYPES")
     const [form, setForm]= useState({
          type: []
     })
@@ -41,7 +41,8 @@ export default function PokemonCreate(params){
     }
 
     return(
-        <div className='divcreated'>
+        <body className='bodycreated'>
+        <div>
             <h1>CREATE YOUR POKEMON</h1>
             <Link to="/home"><button>HOME</button></Link>
 
@@ -53,7 +54,7 @@ export default function PokemonCreate(params){
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                required
+                required //no acepta un campo vacio
                 />
 
                 <label htmlFor="name">HP:</label>
@@ -146,6 +147,7 @@ export default function PokemonCreate(params){
             </form>
         
         </div>
-
+    
+        </body>
     )
 }

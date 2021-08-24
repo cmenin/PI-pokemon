@@ -13,4 +13,3 @@ export default function Card({name,sprite,types}){
     )
 }
 
-//se pasa por props 

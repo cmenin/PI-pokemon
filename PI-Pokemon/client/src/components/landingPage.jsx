@@ -17,4 +17,3 @@ export default function LandingPage() {
   );
 }
 
-//es un link, que cuando haces click te lleva a la otra pagina

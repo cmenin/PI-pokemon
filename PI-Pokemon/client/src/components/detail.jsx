@@ -16,13 +16,14 @@ export default function GetPokemonByID(props) {
     <div className='divD'>
       {
         <div className='divdetailS'>
+          <h2>{thePokemons.name}</h2>
           <img src={thePokemons.sprite} alt="img not found" width="200px" height="250px"/>
         </div>
         }
         
         {
-        <div> 
-          <h2>{thePokemons.name}</h2>
+        <div className='divDet'> 
+          <h2>Detail:</h2>
           <p>Type: {thePokemons.types?.map(t=> t.name + " ")}</p>
           <p>Attack: {thePokemons.attack}</p>
           <p>Defense: {thePokemons.defense}</p>
@@ -32,7 +33,7 @@ export default function GetPokemonByID(props) {
         </div>
 
         }
-      <div> 
+      <div className='divBoton'> 
       <Link to= "/home"> HOME </Link>
       </div>
     </div>

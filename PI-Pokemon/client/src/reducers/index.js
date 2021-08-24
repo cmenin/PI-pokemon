@@ -10,14 +10,14 @@ const rootReducer = (state = initialState, action) => {
     case "GET_POKEMON":
       return {
         ...state,
-        pokemon: action.payload, //pokemon es un arreglo vacio, con esto se manda todo al arreglo.
-        typesPok: action.payload, //typesPok es un arreglo vacio, con esto se manda todo al arreglo.
+        pokemon: action.payload, 
+        typesPok: action.payload, 
       };
 
     case "FILTER_BY_TYPE":
       let allPokemons = state.pokemon;
       //console.log(allPokemons, "STATE POKEMON ------> REDUCER");
-      // cambio la forma de guardar los types, hago un array con los nombres de cada type
+      
 
       const filtrados =
         action.payload === "All" 

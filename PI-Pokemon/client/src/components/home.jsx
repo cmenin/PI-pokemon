@@ -10,24 +10,24 @@ import './home.css'
 
 
 export default function Home(){
-    const dispatch = useDispatch() //utilizar esa constante para ir despachando mis acciones.
-    const allpokemon = useSelector((state) => state.typesPok) //Selecciona el estado
+    const dispatch = useDispatch() 
+    const allpokemon = useSelector((state) => state.typesPok)
     // console.log(allpokemon, "allP")
     //definir estados locales:
-    const [currentPage,setCurrentPage] = useState(1) // pagina actual, y una pagina que me setee la pagina actual. se va a setear en (1) porque siempre voy a arrancar en la primer pagina.
-    const [pokemonsPerPage, setPokemonPerPage]= useState(9)//cuantos pokemons tengo por pagina. y va a setear los pokemons por pagina. se pone la cantidad de cartas que se piden por pagina.
-    const indicexOfLastPokemon = currentPage * pokemonsPerPage//la pagina actual en la que estoy por la cantidad de personajes por pagina
-    const indicexOfFirstPokemon = indicexOfLastPokemon - pokemonsPerPage //indice del ultimo personaje - los personajes por pagina.
-   const currentPokemons= allpokemon.slice(indicexOfFirstPokemon,indicexOfLastPokemon) //me va a mostrar los personajes que estan en la pagina actual. slice() corta un arreglo y toma esa porcion dependiendo de lo que le este pasando por parametro.
-//en en allpokemon le pido que me agarre el indice del primer personaje y el indice del ultimo personaje.
+    const [currentPage,setCurrentPage] = useState(1) 
+    const [pokemonsPerPage, setPokemonPerPage]= useState(9)
+    const indicexOfLastPokemon = currentPage * pokemonsPerPage
+    const indicexOfFirstPokemon = indicexOfLastPokemon - pokemonsPerPage 
+   const currentPokemons= allpokemon.slice(indicexOfFirstPokemon,indicexOfLastPokemon) 
 
-    const paginado =  (pageNumber) =>{ //le paso numero de la pagina y se setea la pagina en ese numero de pagina.
+
+    const paginado =  (pageNumber) =>{ 
  setCurrentPage(pageNumber)
     }
 
-    useEffect(()=>{ //traer del estado, los personajes cuando el componente se monta y ejecuta
+    useEffect(()=>{ 
 dispatch(getPokemon())
-    },[dispatch]) //de lo que depende esto. ej: si dependo del dispatch, le indico que se ejecute siempre y cuando suceda lo del dispatch//se pasa el array vacio cuando no depende de nada.
+    },[dispatch]) 
 
 
  function handleClick(e){

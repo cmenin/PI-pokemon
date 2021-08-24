@@ -17,10 +17,10 @@ const getApiInfo = async () => {
   const api2 = await axios.get(api1.data.next);
   const arrOfPokemonsTotal = api1.data.results.concat(api2.data.results);
   //console.log(arrOfPokemonsTotal);
-  const apiInfo = arrOfPokemonsTotal.map((el) => axios.get(el.url)); //recorremos la url
-  /*trae la info de arriba*/ //se puede hacer destructuring.// es .data porque el axios te trae un objeto "data"
+  const apiInfo = arrOfPokemonsTotal.map((el) => axios.get(el.url)); 
+  
 
-  let pokeInfo = Promise.all(apiInfo) //recorre cada objeto, y en la url busca la info de cada pokemon. el promise espera que todas las promesas se completen, es decir hasta que no se hagan todos los mapeos de apInfo, luego guarda la info en pokeInfo.
+  let pokeInfo = Promise.all(apiInfo) 
     .then((pokemon) => {
       let dataPoke = pokemon.map((pokemon) => pokemon.data);
       let thePokemons = [];
@@ -43,17 +43,16 @@ const getApiInfo = async () => {
   return pokeInfo;
 };
 
-//el get para traer la base de datos. para tarer la info se usa un findAll
+
 
 const getDbInfo = async () => {
   return await Pokemon.findAll({
     //pokemon es el archivo de la db.
     incluide: {
-      //tiene que incluir.
-      model: Type, //para que se relacione.
-      attributes: ["name"], //tb trae el id.
+      model: Type, 
+      attributes: ["name"], 
       through: {
-        //sobre tal tabla, en este caso, atributos. es una comprobacion, va siempre. solo de eso.
+        
         attributes: [],
       },
     },
@@ -61,25 +60,25 @@ const getDbInfo = async () => {
 };
 
 const getAll = async () => {
-  const apiInfo = await getApiInfo(); //la ejecuto porque si no, no me devuelve nada.
+  const apiInfo = await getApiInfo(); 
   const dbInfo = await getDbInfo();
   const infoTotal = dbInfo.concat(apiInfo);
-  return infoTotal; //devuelve un arreglo con toda la info.
+  return infoTotal; 
 };
 
-router.get("/pokemon", async (req, res, next) => { //trae toda la info
-  const { name } = req.query; //trae la primer coincidencia. query: forma de recibir info.
-  const pokemonTotal = await getAll(); // llama a la funcion de arriba que trae todos los pokemons
+router.get("/pokemon", async (req, res, next) => { 
+  const { name } = req.query; 
+  const pokemonTotal = await getAll(); 
   if (name) {
     const pokename = pokemonTotal.filter((el) =>
       el.name.toLowerCase().includes(name.toLowerCase())
-    ); //tomar name y fijarme si incluye lo que se le pasó por query: name
+    ); 
     //console.log(pokename);
-    pokename.length // el.name es cada uno de los name del array pokename
-      ? res.status(200).send(pokename) //devuelve objeto que incluye el nombre
+    pokename.length 
+      ? res.status(200).send(pokename) 
       : res.status(404).send("No se encuentra el Pokemon");
   } else {
-    //si no haya un query
+    
     const thePokemons = await getAll();
     res.status(200).json(thePokemons);
   }
@@ -89,18 +88,17 @@ router.get("/type", async (req, res, next) => {
   const apitypes = await axios.get("https://pokeapi.co/api/v2/type"); //data.results
   // console.log(apitypes.data)
   const arrTipos = apitypes.data.results.map((el) => {
-    //mapea apitypes para obtener los nombres.
-    return { name: el.name }; //se crea un objeto que tiene name.
+    
+    return { name: el.name }; 
   });
-  Type.findOrCreate(arrTipos); //en la base de dato de type, se guarda la info.
-  const alltypes = await Type.findAll(); //busca y trae la info de la bd.
-  res.json(alltypes); //muestra los types que se traen de la base de datos.
+  Type.findOrCreate(arrTipos); 
+  const alltypes = await Type.findAll(); 
+  res.json(alltypes); 
 });
 
 router.post("/pokemon", async (req, res) => {
-  //cuando se usa el post se usa ambas cosas, el req porque se usa con el body, y res es la repuesta.
   const { name, hp, attack, defense, speed, height, weight, sprite, type } =
-    req.body; //destructuring para sacar los datos del body.
+    req.body;
   try {
     // console.log(type, "-------------------------TYPE");
     const createdPokemon = await Pokemon.create({
