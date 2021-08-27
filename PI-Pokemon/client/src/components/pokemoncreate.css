@@ -1,0 +1,47 @@
+.bodycreated{
+    background-color: rgb(151, 148, 148);
+}
+
+.divpokecreate{
+    display: auto;
+}
+
+@font-face{
+    font-family: Rampart One ;
+    src: url(RampartOne-Regular.ttf);
+}
+
+.crearpokemon{
+    margin-top: 3%;
+    /* margin: 3%; */
+    font-family: Rampart One;
+    font-size: 70px;
+    color: black;
+    background: whitesmoke;
+}
+
+.divform{
+    margin: 5%;
+    height: 30%;
+    width: 55%;
+    display: auto;
+    background-color: rgb(248, 150, 58);
+    border: 3px solid #555;
+    border-radius: 8%;
+}
+
+.form{
+    display: block;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+        letter-spacing: 2px;
+        word-spacing: 2px;
+}
+
+.inputname{
+/* display: block; */
+}
+
+.labelname{
+    /* display: block; */
+
+}

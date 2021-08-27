@@ -5,7 +5,7 @@ import { getPokemon, filterByType, sort_AZ, sort_by_attack, isCreated } from '..
 import {Link} from "react-router-dom";
 import Card from './card';
 import Paginado from './paginado';
-import SearchBar from './SearchBar';
+import SearchBar from './searchBar.jsx';
 import './home.css'
 
 
@@ -15,6 +15,7 @@ export default function Home(){
     // console.log(allpokemon, "allP")
     //definir estados locales:
     const [currentPage,setCurrentPage] = useState(1) 
+    // eslint-disable-next-line no-unused-vars
     const [pokemonsPerPage, setPokemonPerPage]= useState(9)
     const indicexOfLastPokemon = currentPage * pokemonsPerPage
     const indicexOfFirstPokemon = indicexOfLastPokemon - pokemonsPerPage 
@@ -60,13 +61,21 @@ dispatch(getPokemon())
 return (
     <body className="pageHome">
     <div> 
-        <Link to= '/pokemon'>
-            <button class="crear" >Crear Personaje</button>
-            </Link> 
-        <h1>POKEMON</h1>
-        <button className='cargar' onClick={e => {handleClick(e)}}>
-            Volver a cargar todos los personajes
-        </button>
+        
+            <div className="divsearch">
+            <SearchBar>
+            </SearchBar>
+            </div> 
+    <a href="/pokemon" class="myButton">Crear Pokemon</a>
+            <button className='cargar' onClick={e => {handleClick(e)}}>
+                Volver a cargar todos los personajes
+            </button>
+                {/* <Link to= '/pokemon'>
+                    <button class="crear" >Crear Personaje</button>
+                    </Link>  */}
+   
+    
+        <h1 className="h1pokemon">-POKEMON-</h1>
         
             <select className="az" onChange={e=>handleSort(e)}>
                 <option value='az'>AZ</option>
@@ -87,7 +96,7 @@ return (
             </select>
         
 
-            <select onChange={e=> {handleFilterType(e)}}>
+            <select className="all" onChange={e=> {handleFilterType(e)}}>
             <option value='All'>All</option>
                 <option value='Normal'>Normal</option>
                 <option value='Fighting'>Fighting</option>
@@ -112,8 +121,6 @@ return (
             </select>
 
             
-
-            <SearchBar></SearchBar>
             
             <Paginado //renderizamos
             pokemonsPerPage = {pokemonsPerPage}

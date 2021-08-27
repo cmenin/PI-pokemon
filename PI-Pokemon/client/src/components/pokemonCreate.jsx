@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postPokemon, getTypes, getPokemon } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
+import "./pokemoncreate.css"
 
 export default function PokemonCreate(params){
     const dispatch = useDispatch()
@@ -42,13 +43,13 @@ export default function PokemonCreate(params){
 
     return(
         <body className='bodycreated'>
-        <div>
-            <h1>CREATE YOUR POKEMON</h1>
             <Link to="/home"><button>HOME</button></Link>
-
-            <form onSubmit={e=>handlSubmit(e)}>
-                <label htmlFor="name">Name:</label>
-                <input 
+        <div className="divpokecreate">
+            <h1 className="crearpokemon">CREATE YOUR POKEMON</h1>
+<div className="divform">
+            <form className="form" onSubmit={e=>handlSubmit(e)}>
+                <label className="labelname" htmlFor="name">Name:</label>
+                <input className="inputname"
                 type="text"
                 id="name"
                 name="name"
@@ -146,6 +147,7 @@ export default function PokemonCreate(params){
             <button type="submit">CREATE</button>
             </form>
         
+                </div>
         </div>
     
         </body>
