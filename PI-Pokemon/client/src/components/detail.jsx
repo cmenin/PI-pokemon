@@ -17,7 +17,7 @@ export default function GetPokemonByID(props) {
       {
         <div className='divdetailS'>
           <h2>{thePokemons.name}</h2>
-          <img src={thePokemons.sprite} alt="img not found" width="200px" height="250px"/>
+          <img classname='imgDetail'src={thePokemons.sprite} alt="img not found" width="200px" height="250px"/>
         </div>
         }
         

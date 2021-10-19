@@ -217,3 +217,9 @@
 	top:1px;
 
 }
+
+.imgDetail{
+    background: white;
+	box-shadow: 0px 0px 20px #1a1917, 0px 0px 30px #36342f, inset 0px 0px 10px #2c2b27;
+	animation: spin 1s infinite linear;
+}
