@@ -8,3 +8,13 @@
      border-radius: 50%; */
 }
 
+  .number a {
+    color: black;
+    padding: 8px 16px;
+  }
+  .number a.activo {
+    color: white;
+  }
+  .number a:hover:not(.activo){
+    background-color: gray;
+  }
