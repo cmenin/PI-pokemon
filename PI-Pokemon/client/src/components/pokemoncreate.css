@@ -1,6 +1,8 @@
 .bodycreated{
-    background-color: rgb(151, 148, 148);
+    background-image: url(https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/gallery/5b0fcfa25bafe83df2c203b3/pokemon1.jpg);
+
 }
+
 
 .divpokecreate{
     display: auto;
@@ -17,7 +19,7 @@
     font-family: Rampart One;
     font-size: 70px;
     color: black;
-    background: whitesmoke;
+    background: rgb(252, 250, 250);
 }
 
 .divform{
@@ -25,7 +27,7 @@
     height: 30%;
     width: 55%;
     display: inline-block;
-    background-color: rgb(248, 150, 58);
+    background-color: rgb(189, 104, 34);
     border: 3px solid #555;
     border-radius: 8%;
 }
@@ -35,5 +37,6 @@
     font-family: "Comic Sans MS", cursive, sans-serif;
         letter-spacing: 2px;
         word-spacing: 2px;
+     color:black
 }
 

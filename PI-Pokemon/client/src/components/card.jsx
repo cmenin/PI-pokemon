@@ -13,3 +13,5 @@ export default function Card({name,sprite,types}){
     )
 }
 
+//{image ? image: url: https://pbs.twimg.com/profile_images/1178942318981701634/d5qM22Ft_400x400.jpg }
+//https://assets.pokemon.com/assets//cms2-es-es/img/watch-pokemon-tv/_tiles/generic/watch-pokemon-tv-169.jpg

@@ -40,9 +40,6 @@ export default function PokemonCreate(params) {
 
   return (
     <body className="bodycreated">
-      <Link to="/home">
-        <button>HOME</button>
-      </Link>
       <div className="divpokecreate">
         <h1 className="crearpokemon">CREATE YOUR POKEMON</h1>
         <div className="divform">
@@ -152,6 +149,9 @@ export default function PokemonCreate(params) {
           </form>
         </div>
       </div>
+      <Link to="/home">
+        <button>HOME</button>
+      </Link>
     </body>
   );
 }
